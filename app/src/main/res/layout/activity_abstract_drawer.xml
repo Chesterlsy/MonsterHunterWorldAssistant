@@ -8,10 +8,19 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/appbar_abstract_drawer"
+    <!--<include-->
+        <!--android:id="@+id/abstract_drawer_content"-->
+        <!--layout="@layout/appbar_abstract_drawer"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <FrameLayout
+        android:id="@+id/abstract_drawer_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        >
+
+    </FrameLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/abstract_drawer_nav_view"
