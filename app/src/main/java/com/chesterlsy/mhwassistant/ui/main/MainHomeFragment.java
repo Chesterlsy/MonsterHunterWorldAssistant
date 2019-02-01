@@ -76,6 +76,18 @@ public class MainHomeFragment<T extends AbstractBasePresenter>
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        outState.putString("data", data);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+//        data = savedInstanceState.getString("data");
+    }
+
+    @Override
     public T setPresenter() {
         return null;
     }
