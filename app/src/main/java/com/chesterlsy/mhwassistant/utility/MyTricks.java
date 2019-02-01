@@ -11,7 +11,7 @@ import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myandroidtricks.R;
+import com.chesterlsy.mhwassistant.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

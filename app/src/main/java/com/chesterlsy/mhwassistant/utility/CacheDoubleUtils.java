@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 
-import com.example.myandroidtricks.utility.constants.CacheConstants;
+import com.chesterlsy.mhwassistant.utility.constants.CacheConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

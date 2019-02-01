@@ -1,14 +1,13 @@
 package com.chesterlsy.mhwassistant.ui;
 
 import com.chesterlsy.mhwassistant.R;
-import com.chesterlsy.mhwassistant.presenter.AbstractBasePresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,9 +22,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-public abstract class AbstractDrawerActivity<T extends AbstractBasePresenter>
-        extends AbstractBaseActivity<T>
-        implements BaseView<T>, NavigationView.OnNavigationItemSelectedListener {
+public abstract class AbstractDrawerActivity
+        extends AbstractBaseActivity
+        implements BaseView, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.abstract_drawer_drawer_layout)
     DrawerLayout abstract_drawer_drawer_layout;
@@ -35,25 +34,38 @@ public abstract class AbstractDrawerActivity<T extends AbstractBasePresenter>
     Toolbar abstract_drawer_toolbar;
     @BindView(R.id.abstract_drawer_fab)
     FloatingActionButton abstract_drawer_fab;
-    @BindView(R.id.abstract_drawer_imageView)
-    ImageView abstract_drawer_imageView;
-    @BindView(R.id.abstract_drawer_frameLayout)
+//    @BindView(R.id.abstract_drawer_imageView)
+//    ImageView abstract_drawer_imageView;
+    @BindView(R.id.abstract_drawer_content_container)
     FrameLayout abstract_drawer_frameLayout;
 
     protected DrawerLayout drawerLayout;
+    protected NavigationView drawerNavigationView;
     protected Toolbar toolbar;
+    protected FrameLayout contentContainer;
+    protected TabLayout toolbarTab;
 //    protected FloatingActionButton fab;
 
+    /**
+     * setBaseLayout => setContentView(setBaseLayout())
+     * => setAppbarLayout => addAppbarView(setAppbarLayout()) => init drawer and toolbar
+     * => setToolbarTab => setContentContainer
+     * => tabVisible(*) = > setTabVisible(tabVisible())
+     * => setAppbarContentLayout(*) => addAppbarContentView(setAppbarContentLayout())
+     * => ButterKnife.bind
+     */
     @Override
     protected void init() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.abstract_drawer_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         addAppbarView(setAppbarLayout());
+        drawerLayout = (DrawerLayout) findViewById(R.id.abstract_drawer_drawer_layout);
+        drawerNavigationView = (NavigationView) findViewById(R.id.abstract_drawer_nav_view);
+
+
+        drawerNavigationView.setNavigationItemSelectedListener(this);
+
         toolbar = findViewById(R.id.abstract_drawer_toolbar);
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.abstract_drawer_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -68,6 +80,9 @@ public abstract class AbstractDrawerActivity<T extends AbstractBasePresenter>
 //            }
 //        });
 
+        toolbarTab = findViewById(setToolbarTab());
+        contentContainer = findViewById(setContentContainer());
+        setTabVisible(tabVisible());
         addAppbarContentView(setAppbarContentLayout());
         ButterKnife.bind(this);
     }
@@ -83,19 +98,40 @@ public abstract class AbstractDrawerActivity<T extends AbstractBasePresenter>
 
     private void addAppbarView(int layoutId) {
         View contentView = LayoutInflater.from(this).inflate(layoutId, null);
-        FrameLayout base_content_frameLayout = findViewById(R.id.abstract_drawer_content);
-        base_content_frameLayout.removeAllViews();
-        base_content_frameLayout.addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        FrameLayout appbarLayoutContainer = findViewById(R.id.abstract_drawer_appbar_layout_container);
+        appbarLayoutContainer.removeAllViews();
+        appbarLayoutContainer.addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    protected int setToolbarTab() {
+        return R.id.abstract_drawer_tabs;
+    }
+
+    protected int setContentContainer() {
+        return R.id.abstract_drawer_content_container;
+    }
+
+
+    protected abstract boolean tabVisible();
+
+    private void setTabVisible(boolean isTabVisible) {
+        if (toolbarTab != null) {
+            if (isTabVisible) {
+                toolbarTab.setVisibility(View.VISIBLE);
+            } else {
+                toolbarTab.setVisibility(View.GONE);
+            }
+        }
     }
 
     protected abstract int setAppbarContentLayout();
 
     private void addAppbarContentView(int layoutId) {
         View contentView = LayoutInflater.from(this).inflate(layoutId, null);
-        FrameLayout base_content_frameLayout = findViewById(R.id.abstract_drawer_frameLayout);
-        base_content_frameLayout.removeAllViews();
-        base_content_frameLayout.addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        contentContainer.removeAllViews();
+        contentContainer.addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
+
 
     @Override
     public void onBackPressed() {

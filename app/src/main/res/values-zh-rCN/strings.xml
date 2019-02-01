@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_text_1">首页</string>
+    <string name="tab_text_3">配装</string>
+    <string name="tab_text_2">资料库</string>
+    <string name="action_settings">设置</string>
+</resources>

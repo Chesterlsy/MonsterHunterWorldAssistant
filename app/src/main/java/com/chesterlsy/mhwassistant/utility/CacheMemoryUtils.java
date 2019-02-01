@@ -2,7 +2,7 @@ package com.chesterlsy.mhwassistant.utility;
 
 import android.util.LruCache;
 
-import com.example.myandroidtricks.utility.constants.CacheConstants;
+import com.chesterlsy.mhwassistant.utility.constants.CacheConstants;
 
 import java.util.HashMap;
 import java.util.Map;

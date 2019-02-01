@@ -1,6 +1,6 @@
 package com.chesterlsy.mhwassistant.utility;
 
-import com.example.myandroidtricks.utility.constants.TimeConstants;
+import com.chesterlsy.mhwassistant.utility.constants.TimeConstants;
 
 import java.text.DateFormat;
 import java.text.ParseException;

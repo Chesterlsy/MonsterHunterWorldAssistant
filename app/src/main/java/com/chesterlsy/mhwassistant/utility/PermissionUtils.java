@@ -14,8 +14,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
-import com.example.myandroidtricks.utility.PermissionUtils.OnRationaleListener.ShouldRequest;
-import com.example.myandroidtricks.utility.constants.PermissionConstants;
+import com.chesterlsy.mhwassistant.utility.constants.PermissionConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,8 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
-
-import static com.example.myandroidtricks.utility.constants.PermissionConstants.Permission;
 
 /**
  * <pre>
@@ -205,7 +202,7 @@ public final class PermissionUtils {
      * @param permissions The permissions.
      * @return the single {@link PermissionUtils} instance
      */
-    public static PermissionUtils permission(@Permission final String... permissions) {
+    public static PermissionUtils permission(@PermissionConstants.Permission final String... permissions) {
         return new PermissionUtils(permissions);
     }
 
@@ -299,7 +296,7 @@ public final class PermissionUtils {
             for (String permission : mPermissionsRequest) {
                 if (activity.shouldShowRequestPermissionRationale(permission)) {
                     getPermissionsStatus(activity);
-                    mOnRationaleListener.rationale(new ShouldRequest() {
+                    mOnRationaleListener.rationale(new OnRationaleListener.ShouldRequest() {
                         @Override
                         public void again(boolean again) {
                             if (again) {

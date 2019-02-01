@@ -10,7 +10,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import com.example.myandroidtricks.utility.constants.CacheConstants;
+import com.chesterlsy.mhwassistant.utility.constants.CacheConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

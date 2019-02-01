@@ -1,7 +1,7 @@
 package com.chesterlsy.mhwassistant.utility;
 
 
-import com.example.myandroidtricks.utility.constants.RegexConstants;
+import com.chesterlsy.mhwassistant.utility.constants.RegexConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;

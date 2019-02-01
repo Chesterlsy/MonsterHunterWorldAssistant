@@ -10,8 +10,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-import com.example.myandroidtricks.utility.constants.MemoryConstants;
-import com.example.myandroidtricks.utility.constants.TimeConstants;
+import com.chesterlsy.mhwassistant.utility.constants.MemoryConstants;
+import com.chesterlsy.mhwassistant.utility.constants.TimeConstants;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
