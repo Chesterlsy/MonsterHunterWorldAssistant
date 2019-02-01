@@ -6,7 +6,8 @@ import java.io.Serializable;
  * App: MonsterHunterWorldAssistant
  * Author: Siyi Liu
  * Created: 2019-01-30 17:05
- * Description:
+ * Description: This is runtime global data.
+ * Tips:
  *      1. The synchronized block will be executed only when the globalDataInstance is null and prevent unnecessary synchronization once the instance variable is initialized.
  *
  *      2. Without volatile modifier it’s possible for another thread in Java to see half initialized state of globalDataInstance variable,

@@ -49,8 +49,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!--<include layout="@layout/content_abstract_drawer" />-->
-
     <FrameLayout
         android:id="@+id/abstract_drawer_content_container"
         android:layout_width="match_parent"
