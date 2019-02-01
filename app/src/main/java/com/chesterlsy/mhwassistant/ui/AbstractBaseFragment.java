@@ -34,14 +34,9 @@ public abstract class AbstractBaseFragment<T extends AbstractBasePresenter>
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(setLayout(), container, false);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        if (rootView == null) {
+            rootView = inflater.inflate(setLayout(), container, false);
+        }
         rootView.setFocusable(true);
         rootView.setFocusableInTouchMode(true);
         rootView.setOnKeyListener(new View.OnKeyListener() {
@@ -54,7 +49,13 @@ public abstract class AbstractBaseFragment<T extends AbstractBasePresenter>
                 }
             }
         });
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         presenter = setPresenter();
         init();
     }
@@ -78,7 +79,6 @@ public abstract class AbstractBaseFragment<T extends AbstractBasePresenter>
 //        abstractBaseFragment.setArguments(args);
 //        return abstractBaseFragment;
 //    }
-
 
     /**
      * Fragments have a different view lifecycle than activities.

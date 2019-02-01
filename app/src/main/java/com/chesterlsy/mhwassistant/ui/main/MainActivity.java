@@ -111,7 +111,7 @@ public class MainActivity extends AbstractDrawerActivity implements BaseView {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return MainHomeFragment.newInstance(position);
+                    return MainHomeFragment.newInstance(position + 1);
             }
             return MainHomeFragment.newInstance(position + 1);
         }

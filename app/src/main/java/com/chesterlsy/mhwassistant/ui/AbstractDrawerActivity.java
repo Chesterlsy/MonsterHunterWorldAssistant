@@ -111,7 +111,6 @@ public abstract class AbstractDrawerActivity
         return R.id.abstract_drawer_content_container;
     }
 
-
     protected abstract boolean tabVisible();
 
     private void setTabVisible(boolean isTabVisible) {
